@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Cartorio;
+use App\Models\Cartorio;
+use App\Models\Cartorio as ModelsCartorio;
 use Illuminate\Http\Request;
 
 class CartorioController extends Controller
@@ -14,7 +15,8 @@ class CartorioController extends Controller
      */
     public function index()
     {
-        return view('cartorios.index', ['page_title' => 'Cartórios']);
+        $cartorios = ModelsCartorio::all();
+        return view('cartorios.index', ['page_title' => 'Cartórios', 'cartorios' => $cartorios]);
     }
 
     /**
@@ -24,7 +26,7 @@ class CartorioController extends Controller
      */
     public function create()
     {
-        //
+        return view('cartorios.form', ['page_title' => 'Cartórios', 'action' => 'create']);
     }
 
     /**
@@ -35,7 +37,7 @@ class CartorioController extends Controller
      */
     public function store(Request $request)
     {
-        
+        Cartorio::create($request->all());
     }
 
     /**
@@ -46,7 +48,7 @@ class CartorioController extends Controller
      */
     public function show(Cartorio $cartorio)
     {
-        //
+        return view('cartorios.form', ['page_title' => 'Cartórios', 'cartorio' => $cartorio, 'action' => 'show']);
     }
 
     /**
@@ -57,7 +59,7 @@ class CartorioController extends Controller
      */
     public function edit(Cartorio $cartorio)
     {
-        //
+        return view('cartorios.form', ['page_title' => 'Cartórios', 'cartorio' => $cartorio, 'action' => 'edit']);
     }
 
     /**
@@ -69,7 +71,7 @@ class CartorioController extends Controller
      */
     public function update(Request $request, Cartorio $cartorio)
     {
-        //
+        return $cartorio->update($request->all());
     }
 
     /**
@@ -81,5 +83,27 @@ class CartorioController extends Controller
     public function destroy(Cartorio $cartorio)
     {
         //
+    }
+
+    /**
+     * Altera o Cartório para o status ativo.
+     *
+     * @param  \App\Cartorio  $cartorio
+     * @return \Illuminate\Http\Response
+     */
+    public function ativar(Cartorio $cartorio)
+    {
+        return $cartorio->ativar();
+    }
+
+    /**
+     * Altera o Cartório para o status desativado.
+     *
+     * @param  \App\Cartorio  $cartorio
+     * @return \Illuminate\Http\Response
+     */
+    public function desativar(Cartorio $cartorio)
+    {
+        return $cartorio->desativar();
     }
 }
