@@ -11,6 +11,34 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-header">
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-12">
+                <a href="{{route('cartorios.create')}}" class="btn btn-info"><i class="fas fa-plus"></i> Adicionar Cartório</a>
+                <button class="btn btn-info"><i class="fas fa-upload"></i> Importar XML</button>
+            </div>
+            <!-- /.col -->
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
+        </div>
+        <!-- ./card-body -->
+        <div class="card-footer">
+          <!-- /.row -->
+        </div>
+        <!-- /.card-footer -->
+      </div>
+      <!-- /.card -->
+    </div>
+    <!-- /.col -->
+  </div>
+
+<div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
           <h5 class="card-title">Listagem</h5>
 
           <div class="card-tools">
