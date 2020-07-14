@@ -14,13 +14,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('home');
 });
 
 Auth::routes();
 
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout.get');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::middleware(['auth'])->group(function () {
+    
+    Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('cartorios', 'CartorioController');
+    //Cartorio
+    Route::resource('cartorios', 'CartorioController');
+    
+    Route::get('read.me', 'HomeController@readme')->name('readme');  
+});

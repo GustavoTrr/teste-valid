@@ -14,7 +14,7 @@ class CartorioController extends Controller
      */
     public function index()
     {
-        
+        return view('cartorios.index', ['page_title' => 'Cartórios']);
     }
 
     /**
