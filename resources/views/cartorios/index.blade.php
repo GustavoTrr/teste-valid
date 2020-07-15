@@ -11,6 +11,7 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-header">
+            <h5 class="card-title">Cadastro e Atualização</h5>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
@@ -85,12 +86,12 @@
                             {{-- <td><button class="btn btn-info">oiee</button></td> --}}
                             <td>
                                 <div class="d-flex justify-content-between">
-                                    <a href="{{route('cartorios.show',$cartorio->id)}}" class="btn btn-outline-primary"><i class="fas fa-eye"></i></a>
-                                    <a href="{{route('cartorios.edit',$cartorio->id)}}" class="btn btn-outline-warning"><i class="fas fa-edit"></i></a>
+                                    <a href="{{route('cartorios.show',$cartorio->id)}}" title="visualizar" class="btn btn-outline-primary"><i class="fas fa-eye"></i></a>
+                                    <a href="{{route('cartorios.edit',$cartorio->id)}}" title="editar" class="btn btn-outline-warning"><i class="fas fa-edit"></i></a>
                                     @if ($cartorio->ativo == 1)
-                                        <button type="button" class="btn btn-outline-danger"><i class="fas fa-thumbs-down"></i></button>
+                                        <button type="button" title="desativar" class="btn btn-outline-danger"><i class="fas fa-thumbs-down"></i></button>
                                     @else
-                                        <button type="button" class="btn btn-outline-success"><i class="fas fa-thumbs-up"></i></button>
+                                        <button type="button" title="ativar" class="btn btn-outline-success"><i class="fas fa-thumbs-up"></i></button>
                                     @endif
                                 </div>
                             </td>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CartorioRequest;
 use App\Models\Cartorio;
 use App\Models\Cartorio as ModelsCartorio;
 use Illuminate\Http\Request;
@@ -35,9 +36,18 @@ class CartorioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CartorioRequest $request)
     {
-        Cartorio::create($request->all());
+        try {
+            if (!Cartorio::create($request->all())) {
+                throw new \Exception("Houve um problema ao tentar salvar o Cartório!", 1);
+                
+            }
+        } catch (\Throwable $th) {
+            return redirect()->route('cartorios.index')->with('error', $th->getMessage());
+        }
+
+        return redirect()->route('cartorios.index')->with('success', 'Contact updated!');
     }
 
     /**
@@ -69,9 +79,18 @@ class CartorioController extends Controller
      * @param  \App\Cartorio  $cartorio
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cartorio $cartorio)
+    public function update(CartorioRequest $request, Cartorio $cartorio)
     {
-        return $cartorio->update($request->all());
+        try {
+            if (!$cartorio->update($request->all())) {
+                throw new \Exception("Houve um problema ao tentar atualizar o Cartório!", 1);
+                
+            }
+        } catch (\Throwable $th) {
+            return redirect()->route('cartorios.index')->with('error', $th->getMessage());
+        }
+
+        return redirect()->route('cartorios.index')->with('success', 'Contact updated!');
     }
 
     /**
