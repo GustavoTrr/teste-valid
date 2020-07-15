@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @push('styles')
+  <!-- Toastr -->
+  <link rel="stylesheet" href="{{asset('plugins/toastr/toastr.min.css')}}">
+  <!-- DataTables -->
   <link rel="stylesheet" href="{{asset('plugins/datatables-bs4/css/dataTables.bootstrap4.css')}}">
   <link rel="stylesheet" href="{{asset('https://cdn.datatables.net/buttons/1.6.2/css/buttons.bootstrap4.min.css')}}">
 @endpush
@@ -89,9 +92,9 @@
                                     <a href="{{route('cartorios.show',$cartorio->id)}}" title="visualizar" class="btn btn-outline-primary"><i class="fas fa-eye"></i></a>
                                     <a href="{{route('cartorios.edit',$cartorio->id)}}" title="editar" class="btn btn-outline-warning"><i class="fas fa-edit"></i></a>
                                     @if ($cartorio->ativo == 1)
-                                        <button type="button" title="desativar" class="btn btn-outline-danger"><i class="fas fa-thumbs-down"></i></button>
+                                        <button type="button" title="desativar" data-id="{{$cartorio->id}}" class="btn btn-outline-danger desativar-cartorio"><i class="fas fa-thumbs-down"></i></button>
                                     @else
-                                        <button type="button" title="ativar" class="btn btn-outline-success"><i class="fas fa-thumbs-up"></i></button>
+                                        <button type="button" title="ativar" data-id="{{$cartorio->id}}" class="btn btn-outline-success ativar-cartorio"><i class="fas fa-thumbs-up"></i></button>
                                     @endif
                                 </div>
                             </td>
@@ -120,6 +123,8 @@
 @endsection
 
 @push('scripts')
+    <!-- Toastr -->
+    <script src="{{ asset('plugins/toastr/toastr.min.js') }}"></script>
     <!-- DataTables -->
     <script src="{{ asset('plugins/datatables/jquery.dataTables.js') }}"></script>
     <script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.js') }}"></script>
@@ -130,6 +135,49 @@
     <script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.print.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.colVis.min.js"></script>
     <script type="text/javascript">
+
+      function ativarCartorio(idCartorio)
+      {
+        var url = 'cartorios/'+idCartorio+'/ativar'
+        $.post(url)
+        .done(function(data){
+          if (data.status) {
+            toastr.success(data.msg)
+          } else {
+            toastr.error(data.msg)
+          }
+          location.reload();
+        })
+        .fail(function() {
+          alert( "error" );
+        });
+      }
+
+      function desativarCartorio(idCartorio)
+      {
+        var url = 'cartorios/'+idCartorio+'/desativar'
+        $.post(url)
+        .done(function(data){
+          if (data.status) {
+            toastr.success(data.msg)
+          } else {
+            toastr.error(data.msg)
+          }
+          location.reload();
+        })
+        .fail(function() {
+          alert( "error" );
+        });
+      }
+
+      $(".ativar-cartorio").click(function(){
+        ativarCartorio($(this).data('id'));
+      });
+
+      $(".desativar-cartorio").click(function(){
+        desativarCartorio($(this).data('id'));
+      });
+
         $(document).ready(function() {
             var table = $('#dt_cartorios').DataTable({
                 language: {

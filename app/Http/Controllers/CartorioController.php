@@ -112,7 +112,21 @@ class CartorioController extends Controller
      */
     public function ativar(Cartorio $cartorio)
     {
-        return $cartorio->ativar();
+        try {
+            if (!$cartorio->ativar()) {
+                throw new \Exception("Erro ao tentar ativar o cartório", 1);
+            }
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status' => false,
+                'msg' => $th->getMessage()
+            ]);
+        }
+
+        return response()->json([
+            'status' => true,
+            'msg' => 'Cartório ativado com sucesso!'
+        ]);
     }
 
     /**
@@ -123,6 +137,20 @@ class CartorioController extends Controller
      */
     public function desativar(Cartorio $cartorio)
     {
-        return $cartorio->desativar();
+        try {
+            if (!$cartorio->desativar()) {
+                throw new \Exception("Erro ao tentar desativar o cartório", 1);
+            }
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status' => false,
+                'msg' => $th->getMessage()
+            ]);
+        }
+
+        return response()->json([
+            'status' => true,
+            'msg' => 'Cartório desativado com sucesso!'
+        ]);
     }
 }
