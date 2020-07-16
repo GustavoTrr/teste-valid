@@ -176,6 +176,8 @@
     <script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.print.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.colVis.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.5/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.5/js/responsive.bootstrap4.min.js"></script>
     <script type="text/javascript">
 
       function ativarCartorio(idCartorio)
@@ -212,11 +214,11 @@
         });
       }
 
-      $(".ativar-cartorio").click(function(){
+      $(document).on("click",".ativar-cartorio",function(e){
         ativarCartorio($(this).data('id'));
       });
 
-      $(".desativar-cartorio").click(function(){
+      $(document).on("click",".desativar-cartorio",function(e){
         desativarCartorio($(this).data('id'));
       });
 
@@ -228,6 +230,7 @@
 
         $(document).ready(function() {
             var table = $('#dt_cartorios').DataTable({
+                responsive: true,
                 ajax: {
                   url: 'cartorios/datatables/json'
                 },
