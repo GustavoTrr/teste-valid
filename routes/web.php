@@ -27,10 +27,12 @@ Route::middleware(['auth'])->group(function () {
 
     //Cartorio
     Route::resource('cartorios', 'CartorioController');
-    Route::post('cartorios/{cartorio}/ativar', 'CartorioController@ativar')->name('cartorios.ativar');
-    Route::post('cartorios/{cartorio}/desativar', 'CartorioController@desativar')->name('cartorios.desativar');
-    Route::post('cartorios/importar-xml', 'CartorioController@importarXML')->name('cartorios.importarxml');
-    Route::get('cartorios/datatables/json', 'CartorioController@datatables')->name('cartorios.dt');
+    Route::prefix('cartorios')->group(function(){
+        Route::post('/{cartorio}/ativar', 'CartorioController@ativar')->name('cartorios.ativar');
+        Route::post('/{cartorio}/desativar', 'CartorioController@desativar')->name('cartorios.desativar');
+        Route::post('/importar-xml', 'CartorioController@importarXML')->name('cartorios.importarxml');
+        Route::get('/datatables/json', 'CartorioController@datatables')->name('cartorios.dt');
+    });
     
-    Route::get('read.me', 'HomeController@readme')->name('readme');  
+    Route::get('read.me', 'ReadmeController@show')->name('readme');
 });

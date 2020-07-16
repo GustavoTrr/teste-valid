@@ -2,10 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Mail\Markdown;
-use League\CommonMark\Input\MarkdownInput;
-
 class HomeController extends Controller
 {
     /**
@@ -19,7 +15,7 @@ class HomeController extends Controller
     }
 
     /**
-     * Show the application dashboard.
+     * Redirect to "cartorios" page.
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -28,16 +24,4 @@ class HomeController extends Controller
         return redirect()->route('cartorios.index');
     }
 
-    /**
-     * Show the application README.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function readme()
-    {
-        $markdownReadmeText = file_get_contents('../README.MD');
-        $markdownReadmeHTML = Markdown::parse($markdownReadmeText);
-
-        return view('readme.index', ['page_title' => 'README', 'markdownReadme' => $markdownReadmeHTML]);
-    }
 }

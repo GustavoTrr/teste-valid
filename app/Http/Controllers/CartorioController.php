@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CartorioRequest;
 use App\Models\Cartorio;
-use App\Models\Cartorio as ModelsCartorio;
 use Illuminate\Http\Request;
 
 class CartorioController extends Controller
@@ -16,7 +15,7 @@ class CartorioController extends Controller
      */
     public function index()
     {
-        $cartorios = ModelsCartorio::all();
+        $cartorios = Cartorio::all();
         return view('cartorios.index', ['page_title' => 'Cartórios', 'cartorios' => $cartorios]);
     }
 
@@ -154,6 +153,12 @@ class CartorioController extends Controller
         ]);
     }
 
+    /**
+     * Recebe o arquivo XML enviado pelo usuário e Cria/Atualiza a base de Cartórios
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
     public function importarXML(Request $request)
     {
         $request->validate([
@@ -186,6 +191,11 @@ class CartorioController extends Controller
         
     }
 
+    /**
+     * Retorna o JSON com a coleção de Cartórios no formato usado pelo DataTables
+     *
+     * @return \Illuminate\Http\Response json (Collection Cartorio)
+     */
     public function datatables()
     {
         $cartorios = Cartorio::all();
