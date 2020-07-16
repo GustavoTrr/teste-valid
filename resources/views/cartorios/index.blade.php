@@ -142,31 +142,6 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($cartorios as $cartorio)
-                        <tr>
-                            <td>{{$cartorio->nome}}</td>
-                            <td>{{$cartorio->razao}}</td>
-                            <td>{{$cartorio->documento}}</td>
-                            <td>{{$cartorio->cep}}</td>
-                            <td>{{$cartorio->endereco}}, {{$cartorio->bairro}} - {{$cartorio->cidade}} - {{$cartorio->uf}}</td>
-                            <td>{{$cartorio->telefone}}</td>
-                            <td>{{$cartorio->email}}</td>
-                            <td>{{$cartorio->tabeliao}}</td>
-                            <td>{{($cartorio->ativo == 1) ? 'SIM' : 'NÃO'}}</td>
-                            {{-- <td><button class="btn btn-info">oiee</button></td> --}}
-                            <td>
-                                <div class="d-flex justify-content-between">
-                                    <a href="{{route('cartorios.show',$cartorio->id)}}" title="visualizar" class="btn btn-outline-primary"><i class="fas fa-eye"></i></a>
-                                    <a href="{{route('cartorios.edit',$cartorio->id)}}" title="editar" class="btn btn-outline-warning"><i class="fas fa-edit"></i></a>
-                                    @if ($cartorio->ativo == 1)
-                                        <button type="button" title="desativar" data-id="{{$cartorio->id}}" class="btn btn-outline-danger desativar-cartorio"><i class="fas fa-thumbs-down"></i></button>
-                                    @else
-                                        <button type="button" title="ativar" data-id="{{$cartorio->id}}" class="btn btn-outline-success ativar-cartorio"><i class="fas fa-thumbs-up"></i></button>
-                                    @endif
-                                </div>
-                            </td>
-                        </tr>
-                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -253,6 +228,10 @@
 
         $(document).ready(function() {
             var table = $('#dt_cartorios').DataTable({
+                ajax: {
+                  url: 'cartorios/datatables/json'
+                },
+                dom: 'Bfrtip',
                 language: {
                     "sEmptyTable":   "Não foi encontrado nenhum registo",
                     "sLoadingRecords": "A carregar...",
@@ -279,20 +258,36 @@
                 },
                 lengthChange: false,
                 buttons: [ 'excel', 'colvis' ],
-                "columnDefs": [
-            {
-                "targets": [ 2 ],
-                "visible": false,
-            },
-            {
-                "targets": [ 3 ],
-                "visible": false,
-            },
-            {
-                "targets": [ 7 ],
-                "visible": false
-            }
-        ]
+                "columns": [
+                  { "data": "nome" },
+                  { "data": "razao" },
+                  { "data": "documento", "visible": false },
+                  { "data": "cep", "visible": false },
+                  { "data": "endereco" },
+                  { "data": "telefone" },
+                  { "data": "email" },
+                  { "data": "tabeliao", "visible": false },
+                  { "data": function(row){
+                    return (row.ativo) ? "SIM" : "NÃO";
+                  }},
+                  { "data": function(row){
+
+                    let btnativDesativ = '';
+
+                    if(row.ativo) {
+                      btnativDesativ = `<button type="button" title="desativar" data-id="`+row.id+`" class="btn btn-outline-danger desativar-cartorio"><i class="fas fa-thumbs-down"></i></button>`;
+                    } else {
+                      btnativDesativ = `<button type="button" title="ativar" data-id="`+row.id+`" class="btn btn-outline-success ativar-cartorio"><i class="fas fa-thumbs-up"></i></button>`;
+                    }
+
+                    return `<div class="d-flex justify-content-between">
+                          <a href="cartorios/`+row.id+`" title="visualizar" class="btn btn-outline-primary"><i class="fas fa-eye"></i></a>
+                          <a href="cartorios/`+row.id+`/edit" title="editar" class="btn btn-outline-warning mx-1"><i class="fas fa-edit"></i></a>
+                          `+btnativDesativ+`
+                      </div>`;
+                  } },
+
+              ]
             } ).buttons().container()
                 .appendTo( '#div_export_buttons' );
 

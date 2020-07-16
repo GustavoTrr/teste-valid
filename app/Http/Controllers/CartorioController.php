@@ -185,4 +185,11 @@ class CartorioController extends Controller
         return redirect()->route('cartorios.index')->with('success', 'Importação concluída com sucesso!');
         
     }
+
+    public function datatables()
+    {
+        $cartorios = Cartorio::all();
+
+        return response()->json(['data' => $cartorios]);
+    }
 }
