@@ -65,7 +65,7 @@
 									</div>
 									<div class="form-group">
 										<label for="form_cartorio_TELEFONE">TELEFONE</label>
-										<input class="form-control @error('telefone') is-invalid @enderror" type="text" name="telefone" value="{{old('telefone') ?? $cartorio->telefone ?? null}}" placeholder="TELEFONE" maxlength="20" required />
+										<input class="form-control @error('telefone') is-invalid @enderror" type="text" name="telefone" value="{{old('telefone') ?? $cartorio->telefone ?? null}}" placeholder="TELEFONE" maxlength="20" />
 										@error('telefone')
 										<div class="invalid-feedback">
 											{{$message}}
@@ -74,7 +74,7 @@
 									</div>
 									<div class="form-group">
 										<label for="form_cartorio_EMAIL">EMAIL</label>
-										<input class="form-control @error('email') is-invalid @enderror" type="email" name="email" value="{{old('email') ?? $cartorio->email ?? null}}" placeholder="EMAIL" maxlength="200" required />
+										<input class="form-control @error('email') is-invalid @enderror" type="email" name="email" value="{{old('email') ?? $cartorio->email ?? null}}" placeholder="EMAIL" maxlength="200" />
 										@error('email')
 										<div class="invalid-feedback">
 											{{$message}}

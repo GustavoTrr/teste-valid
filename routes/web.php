@@ -27,8 +27,9 @@ Route::middleware(['auth'])->group(function () {
 
     //Cartorio
     Route::resource('cartorios', 'CartorioController');
-    Route::post('cartorios/{cartorio}/ativar', 'CartorioController@ativar');
-    Route::post('cartorios/{cartorio}/desativar', 'CartorioController@desativar');
+    Route::post('cartorios/{cartorio}/ativar', 'CartorioController@ativar')->name('cartorios.ativar');
+    Route::post('cartorios/{cartorio}/desativar', 'CartorioController@desativar')->name('cartorios.desativar');
+    Route::post('cartorios/importar-xml', 'CartorioController@importarXML')->name('cartorios.importarxml');
     
     Route::get('read.me', 'HomeController@readme')->name('readme');  
 });

@@ -153,4 +153,36 @@ class CartorioController extends Controller
             'msg' => 'Cartório desativado com sucesso!'
         ]);
     }
+
+    public function importarXML(Request $request)
+    {
+        $request->validate([
+            'xml' => 'required|file|mimetypes:text/plain,application/xml,xml'
+        ]);
+
+        try {
+            libxml_use_internal_errors(true);
+
+            /* Lê o arquivo XML e recebe um objeto com as informações */
+            $xml = simplexml_load_string($request->file('xml')->get());
+            if (!$xml) {
+                // redirectWithErrors('cartorios', ['O arquivo xml nâo foi reconhecido!']);
+                throw new \Exception("Arquivo XML inválido", 1);
+            }
+            foreach ($xml as $value) {
+
+                $arrDados = (array) $value;
+
+                Cartorio::updateOrCreate(
+                    ['razao' => $arrDados['razao'], 'documento' => $arrDados['documento']],
+                    $arrDados
+                );
+            }
+        } catch (\Throwable $th) {
+            // return redirect()->with error bag
+        }
+        
+        // return  redirect with success message
+        
+    }
 }
