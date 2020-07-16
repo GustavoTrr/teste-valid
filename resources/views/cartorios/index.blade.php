@@ -295,6 +295,15 @@
         ]
             } ).buttons().container()
                 .appendTo( '#div_export_buttons' );
+
+                @if (Session::has('success'))
+                  toastr.success("{{Session::get('success')}}");
+                @endif
+                @if ( (Session::has('error')) || ($errors->any()) )
+                  toastr.error("{{Session::get('error') ?? $errors->first() ?? 'Erro!'}}");
+                @endif
         } );
     </script>
+    
 @endpush
+

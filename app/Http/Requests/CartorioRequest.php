@@ -35,7 +35,7 @@ class CartorioRequest extends FormRequest
             'bairro' => 'required|max:100',
             'cidade' => 'required|max:100',
             'uf' => 'required|max:2',
-            'telefone' => 'digits_between:8,20',
+            'telefone' => 'nullable|digits_between:8,20',
             'email' => 'max:200',
             'tabeliao' => 'required|max:100'
         ];

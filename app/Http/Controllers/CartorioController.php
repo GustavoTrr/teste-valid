@@ -47,7 +47,7 @@ class CartorioController extends Controller
             return redirect()->route('cartorios.index')->with('error', $th->getMessage());
         }
 
-        return redirect()->route('cartorios.index')->with('success', 'Contact updated!');
+        return redirect()->route('cartorios.index')->with('success', 'Cartório adicionado com sucesso!');
     }
 
     /**
@@ -90,7 +90,7 @@ class CartorioController extends Controller
             return redirect()->route('cartorios.index')->with('error', $th->getMessage());
         }
 
-        return redirect()->route('cartorios.index')->with('success', 'Contact updated!');
+        return redirect()->route('cartorios.index')->with('success', 'Cartório editado com sucesso!');
     }
 
     /**
@@ -179,10 +179,10 @@ class CartorioController extends Controller
                 );
             }
         } catch (\Throwable $th) {
-            // return redirect()->with error bag
+            return redirect()->route('cartorios.index')->with('error', 'Erro ao importar! ' . $th->getMessage());
         }
         
-        // return  redirect with success message
+        return redirect()->route('cartorios.index')->with('success', 'Importação concluída com sucesso!');
         
     }
 }
