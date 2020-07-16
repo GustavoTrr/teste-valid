@@ -6,63 +6,6 @@
   <!-- DataTables -->
   <link rel="stylesheet" href="{{asset('plugins/datatables-bs4/css/dataTables.bootstrap4.css')}}">
   <link rel="stylesheet" href="{{asset('https://cdn.datatables.net/buttons/1.6.2/css/buttons.bootstrap4.min.css')}}">
-
-  <style type="text/css">
-  /*Aqui ficam todas as classes que estarão presentes em toda a aplicação*/
-.profile-user-img {
-	height:100px !important;
-	object-fit: cover;
-}
-.navbar-nav>.user-menu .user-image {
-	object-fit: cover;
-}
-.user-panel>.image>img {
-    width: 100%;
-    max-width: 45px;
-    height: 45px !important;
-	object-fit: cover;
-}
-.widget-user-2 .widget-user-image>img {
-    width: 65px;
-    height: 65px !important;
-	object-fit: cover;
-}
-.navbar-nav>.user-menu>.dropdown-menu>li.user-header>img {
-	
-	object-fit: cover;
-}
-#sibac_luz_online{
-    background-image: radial-gradient(circle, #6dff9a, #50b530, green);
-    border-radius: 50%;
-	color:transparent;
-}
-/*Para corrigir o tamanho do SweetAlert*/
-
-    #preloader {
-      position:fixed;
-      top:0;
-      left:0;
-      right:0;
-      bottom:0;
-      background-color:#ffffffa3; /* cor do background que vai ocupar o body */
-      z-index:1031; /* z-index para jogar para frente e sobrepor tudo o menu superior tem 1030*/
-      opacity: 0.1;
-    }
-
-    div#div_input_xml {
-      position: relative;
-      overflow: hidden;
-    }
-    input#input_xml {
-      position: absolute;
-      font-size: 50px;
-      opacity: 0;
-      right: 0;
-      top: 0;
-    }
-  </style>
-    
-
 @endpush
 
 @section('content')
@@ -80,9 +23,9 @@
                 <a href="{{route('cartorios.create')}}" class="btn btn-info mr-3"><i class="fas fa-plus"></i> Adicionar Cartório</a>
                 <form id="form_xml" action="{{route('cartorios.importarxml')}}" method="post" enctype="multipart/form-data">
                   @csrf
-                  <div id="div_input_xml" class="file btn btn-info">
+                  <div id="div_input_xml" class="btn-file-div btn btn-info cursor-pointer">
                     <i class="fas fa-upload"></i> Importar XML
-                    <input id="input_xml" type="file" name="xml">
+                    <input id="input_xml" class="cursor-pointer" type="file" name="xml">
                   </div>
                   <div id="div_input_loader" class="file btn btn-info" style="display:none;">
                     <span class="spinner-border spinner-border-sm"></span>

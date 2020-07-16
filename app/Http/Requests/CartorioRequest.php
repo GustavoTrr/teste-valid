@@ -41,29 +41,4 @@ class CartorioRequest extends FormRequest
         ];
     }
 
-    /**
-     * Configure the validator instance.
-     *
-     * @param  \Illuminate\Validation\Validator  $validator
-     * @return void
-     */
-    public function withValidator($validator)
-    {
-        // $validator->after(function ($validator) {
-        //     // dd($this->errorBag);
-        //     // if ($this->errorBag) {
-        //     //     $validator->errors()->add('field', 'Something is wrong with this field!');
-        //     //     dd($validator->errors());
-        //     // }
-        //     dd($validator->errors());
-        //     // if ($validator->fails()) {
-        //     //     dd($validator->errors());
-        //     //     // return redirect('post/create')
-        //     //     //             ->withErrors($validator)
-        //     //     //             ->withInput();
-        //     // }
-        //     dd('não tem erro');
-
-        // });
-    }
 }

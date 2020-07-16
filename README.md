@@ -8,6 +8,8 @@ Este projeto foi criado para atender o desafio proposto no processo de seleção
 
 Este sistema foi construindo ulizando a stack PHP, JS, CSS e HTML.
 
+Foram mesclados recursos nativos do Framework Laravel com Plugins a fim de mostrar a versatilidadeda que a aplicaç~~ao pode ter conforme a necessidade de sua utiilização e manejo.
+
 ## Desenvolvido com
 
 * PHP
