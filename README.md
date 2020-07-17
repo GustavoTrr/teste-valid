@@ -6,22 +6,69 @@ Este projeto foi criado para atender o desafio proposto no processo de seleção
 
 ## Construção
 
-Este sistema foi construindo ulizando a stack PHP, JS, CSS e HTML.
+Este sistema foi construindo ulizando a stack PHP, JS, CSS e HTML, com o auxílio de frameworks e plugins solicitados como requisitos.
 
-Foram mesclados recursos nativos do Framework Laravel com Plugins a fim de mostrar a versatilidadeda que a aplicaç~~ao pode ter conforme a necessidade de sua utiilização e manejo.
+Foram mesclados recursos nativos do Framework Laravel com Plugins a fim de mostrar a versatilidadeda que a aplicação pode ter conforme a necessidade de sua utiilização e manejo.
+
+Tendo em vista o foco na simplicidade da aplicação, alguns padrões, como Repository, não foram implementados, pois não se identificou a necessidade.
+
+
+### Para o perfeito funcionamento desta aplicação, é fundamental que:
+
+1. Esteja em um ambiente com:
+	1.1 Apache 2
+	1.2 PHP Versão 7.3 ou superior
+	1.3 PostgreSQL v. 12.3 ou superior
+    1.4 Composer (para a instalação das dependências e do autoload PSR-4)
+	
+2. O mod_rewrite do Apache esteja habilitado
+	2.1 Em caso de dúvidas pode seguir o tutorial em http://www.devfuria.com.br/linux/apache-habilitar-mod_rewrite-no-apache-mod/
+
+### Instalação
+
+Após feito o download ou clone do projeto, 
+
+* Crie um banco de dados no seu servidor de Banco de Dados
+* Copie o arquivo ".env.example", renomeando para ".env" e defina os dados de configuração neste arquivo
+* Execute acessando o diretório raiz da aplicação por um CLI (como CMD ou Terminal), execute os seguintes comandos:
+
+Para instalar as dependências:
+
+```
+composer install
+```
+
+Para Gerar a Chave da Aplicação:
+
+```
+php artisan key:generate
+```
+
+Para fazer a criação da estrutura de banco de dados e a carga inicial:
+```
+instalador-de-banco-de-dados
+```
+
+Após estes passos, o sistema estará pronto para uso, podendo ser acessado via browser, apontando para diretório raiz da aplicação.
 
 ## Desenvolvido com
 
 * PHP
+* [Laravel 7](https://laravel.com/) - The PHP Framework for Web Artisans
 * [Composer](https://getcomposer.org/) - Dependency Manager for PHP
 
 * JS, CSS e HTML5
 * [JQuery](https://jquery.com/) - JavaScript library
-* [Bootstrap](https://getbootstrap.com/) - front-end component library
+* [Bootstrap 4](https://getbootstrap.com/) - front-end component library
 * [Datatables](https://datatables.net/) - library for HTML tables
 * [FontAwsome](https://fontawesome.com/) - icons
+* [Toastr](https://codeseven.github.io/toastr/) - jquery/css notifications
 * [AminLTE](https://adminlte.io/) - Admin Dashboard Template
 
+
+## Versão
+
+1.0.0
 
 ## Authors
 
