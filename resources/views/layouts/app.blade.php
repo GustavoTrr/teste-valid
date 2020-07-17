@@ -7,6 +7,8 @@
 
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
+  <!-- Icon -->
+  <link rel="icon" href="{{ asset('img/logo-anoreg.png') }}">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
   <!-- Tempusdominus Bootstrap 4 -->
@@ -39,7 +41,7 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="{{route('home')}}" class="brand-link">
-      <img src="{{asset('img/logo-anoreg-300.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <img src="{{asset('img/logo-anoreg-300.png')}}" alt="Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">ANOREG</span>
     </a>
 
