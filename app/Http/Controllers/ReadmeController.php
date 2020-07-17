@@ -13,7 +13,7 @@ class ReadmeController extends Controller
      */
     public function show()
     {
-        $markdownReadmeText = file_get_contents(base_path() . '/README.MD');
+        $markdownReadmeText = file_get_contents(base_path() . '/README.md');
         $markdownReadmeHTML = Markdown::parse($markdownReadmeText);
 
         return view('readme.index', ['page_title' => 'README', 'markdownReadme' => $markdownReadmeHTML]);
