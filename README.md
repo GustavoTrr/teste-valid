@@ -8,6 +8,8 @@ Este projeto foi criado para atender o desafio proposto no processo de seleção
 
 Este sistema foi construindo ulizando a stack PHP, JS, CSS e HTML, com o auxílio de frameworks e plugins solicitados como requisitos.
 
+O Servidor de Banco de Dados utilizado no desenvolvimento foi o PostgreSQL v. 12.3
+
 Foram mesclados recursos nativos do Framework Laravel com Plugins a fim de mostrar a versatilidadeda que a aplicação pode ter conforme a necessidade de sua utiilização e manejo.
 
 Tendo em vista o foco na simplicidade da aplicação, alguns padrões, como Repository, não foram implementados, pois não se identificou a necessidade.
@@ -16,13 +18,13 @@ Tendo em vista o foco na simplicidade da aplicação, alguns padrões, como Repo
 ### Para o perfeito funcionamento desta aplicação, é fundamental que:
 
 1. Esteja em um ambiente com:
-	1.1 Apache 2
-	1.2 PHP Versão 7.3 ou superior
-	1.3 PostgreSQL v. 12.3 ou superior
-    1.4 Composer (para a instalação das dependências e do autoload PSR-4)
+	- Apache 2
+	- PHP Versão 7.3 ou superior
+	- PostgreSQL v. 12.3 ou superior
+    - Composer (para a instalação das dependências e do autoload PSR-4)
 	
 2. O mod_rewrite do Apache esteja habilitado
-	2.1 Em caso de dúvidas pode seguir o tutorial em http://www.devfuria.com.br/linux/apache-habilitar-mod_rewrite-no-apache-mod/
+	- Em caso de dúvidas pode seguir o tutorial em http://www.devfuria.com.br/linux/apache-habilitar-mod_rewrite-no-apache-mod/
 
 ### Instalação
 
@@ -44,9 +46,9 @@ Para Gerar a Chave da Aplicação:
 php artisan key:generate
 ```
 
-Para fazer a criação da estrutura de banco de dados e a carga inicial:
+Para fazer a criação da estrutura de banco de dados:
 ```
-instalador-de-banco-de-dados
+php artisan migrate
 ```
 
 Após estes passos, o sistema estará pronto para uso, podendo ser acessado via browser, apontando para diretório raiz da aplicação.
